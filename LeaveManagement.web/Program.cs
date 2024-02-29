@@ -1,4 +1,6 @@
+using LeaveManagement.web.Contracts;
 using LeaveManagement.web.Data;
+using LeaveManagement.web.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +14,11 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<Employee>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+/*AddTransient gives brandnew copy (used with api)
+ AddSingleton using single instance of service in entire application
+ AddScoped give new connection but when finished it's going to end*/
+builder.Services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
+builder.Services.AddScoped<ILeaveTypeRepository,LeaveTypeRepository>();
 builder.Services.AddAutoMapper(typeof(ApplicationDbContext));
 builder.Services.AddControllersWithViews();
 
