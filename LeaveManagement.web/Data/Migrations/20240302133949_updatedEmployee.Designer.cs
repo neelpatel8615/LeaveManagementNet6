@@ -4,6 +4,7 @@ using LeaveManagement.web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LeaveManagement.web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240302133949_updatedEmployee")]
+    partial class updatedEmployee
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,51 +102,9 @@ namespace LeaveManagement.web.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "4ef245a8-7aee-43e5-aae7-b3ecf1b6efa4",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "aaa3d63a-bfbc-4a0d-9633-14c6cc075ec2",
-                            DateJoined = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "admin@gmail.com",
-                            EmailConfirmed = true,
-                            FirstName = "admin",
-                            LastName = "LMS",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN@GMAIL.COM",
-                            NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJ3fuQsV9mZHLwN2oU9uWD0KHteAQ83qEEoR+gWgNQQSKnjDd/DC0P54ksMr436zyA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "eb25901e-8f85-4068-bcfc-9da0ea268c4b",
-                            TwoFactorEnabled = false,
-                            UserName = "admin@gmail.com"
-                        },
-                        new
-                        {
-                            Id = "650c2894-3d0c-40ff-9a31-9aa0cae71932",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "8ac27105-7109-4da1-99aa-d33299f5f1f9",
-                            DateJoined = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "user@gmail.com",
-                            EmailConfirmed = true,
-                            FirstName = "user",
-                            LastName = "LMS",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "USER@GMAIL.COM",
-                            NormalizedUserName = "USER@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMTWBHHKNI5kEtT45dpfm2xfhKpZIb44q4z5goKUj5375UtLh+Pvz1deYuCmfxYNLg==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "2035877a-e934-4fc4-9aa0-7a2735a86c51",
-                            TwoFactorEnabled = false,
-                            UserName = "user@gmail.com"
-                        });
                 });
 
-            modelBuilder.Entity("LeaveManagement.Web.Data.LeaveAllocation", b =>
+            modelBuilder.Entity("LeaveManagement.web.Data.LeaveAllocation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -158,17 +118,13 @@ namespace LeaveManagement.web.Data.Migrations
                     b.Property<DateTime>("DateModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("EmployeeId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
 
                     b.Property<int>("LeaveTypeId")
                         .HasColumnType("int");
 
                     b.Property<int>("NumberOfDays")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Period")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -229,22 +185,6 @@ namespace LeaveManagement.web.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "4f42fada-4765-459e-8455-1153b3691db3",
-                            ConcurrencyStamp = "a0b8c9d4-7cba-4531-8095-917fdb7558f9",
-                            Name = "Administrator",
-                            NormalizedName = "ADMINISTRATOR"
-                        },
-                        new
-                        {
-                            Id = "2f9678d8-23ac-4161-b07e-d3d25167dd9c",
-                            ConcurrencyStamp = "3509fbce-a400-4c0f-b1da-ca6fa71b3f90",
-                            Name = "User",
-                            NormalizedName = "USER"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -334,18 +274,6 @@ namespace LeaveManagement.web.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "4ef245a8-7aee-43e5-aae7-b3ecf1b6efa4",
-                            RoleId = "4f42fada-4765-459e-8455-1153b3691db3"
-                        },
-                        new
-                        {
-                            UserId = "650c2894-3d0c-40ff-9a31-9aa0cae71932",
-                            RoleId = "2f9678d8-23ac-4161-b07e-d3d25167dd9c"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -369,7 +297,7 @@ namespace LeaveManagement.web.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("LeaveManagement.Web.Data.LeaveAllocation", b =>
+            modelBuilder.Entity("LeaveManagement.web.Data.LeaveAllocation", b =>
                 {
                     b.HasOne("LeaveManagement.web.Data.LeaveType", "LeaveType")
                         .WithMany()

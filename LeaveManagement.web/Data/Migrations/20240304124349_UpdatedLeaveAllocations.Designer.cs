@@ -4,6 +4,7 @@ using LeaveManagement.web.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LeaveManagement.web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240304124349_UpdatedLeaveAllocations")]
+    partial class UpdatedLeaveAllocations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,7 +108,7 @@ namespace LeaveManagement.web.Data.Migrations
                         {
                             Id = "4ef245a8-7aee-43e5-aae7-b3ecf1b6efa4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "aaa3d63a-bfbc-4a0d-9633-14c6cc075ec2",
+                            ConcurrencyStamp = "f9df4e63-87b7-4dfb-b8e3-ff330851bbf4",
                             DateJoined = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
@@ -116,9 +118,9 @@ namespace LeaveManagement.web.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJ3fuQsV9mZHLwN2oU9uWD0KHteAQ83qEEoR+gWgNQQSKnjDd/DC0P54ksMr436zyA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJlbp2TqI10osNxzQz9Qnz9vHm5UIjM6/k5fVcFDusfcfDJAx0isIVrGiRb68iD/iw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "eb25901e-8f85-4068-bcfc-9da0ea268c4b",
+                            SecurityStamp = "8b0a442b-e07f-4c4d-a97f-f5224ec08ac8",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         },
@@ -126,7 +128,7 @@ namespace LeaveManagement.web.Data.Migrations
                         {
                             Id = "650c2894-3d0c-40ff-9a31-9aa0cae71932",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8ac27105-7109-4da1-99aa-d33299f5f1f9",
+                            ConcurrencyStamp = "ce929aa1-0af6-4a98-a6bd-139fe3ceb446",
                             DateJoined = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@gmail.com",
@@ -136,15 +138,15 @@ namespace LeaveManagement.web.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@GMAIL.COM",
                             NormalizedUserName = "USER@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMTWBHHKNI5kEtT45dpfm2xfhKpZIb44q4z5goKUj5375UtLh+Pvz1deYuCmfxYNLg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKe0ai6e6nrFyxP4fCfqJ46EGdN2+Qrpi5yFACaUA5b9mtDOfi3gtBkJWq18xj0dMw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2035877a-e934-4fc4-9aa0-7a2735a86c51",
+                            SecurityStamp = "85e24421-7bdc-4326-b856-1021f6925f0e",
                             TwoFactorEnabled = false,
                             UserName = "user@gmail.com"
                         });
                 });
 
-            modelBuilder.Entity("LeaveManagement.Web.Data.LeaveAllocation", b =>
+            modelBuilder.Entity("LeaveManagement.web.Data.LeaveAllocation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -158,9 +160,8 @@ namespace LeaveManagement.web.Data.Migrations
                     b.Property<DateTime>("DateModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("EmployeeId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
 
                     b.Property<int>("LeaveTypeId")
                         .HasColumnType("int");
@@ -234,14 +235,14 @@ namespace LeaveManagement.web.Data.Migrations
                         new
                         {
                             Id = "4f42fada-4765-459e-8455-1153b3691db3",
-                            ConcurrencyStamp = "a0b8c9d4-7cba-4531-8095-917fdb7558f9",
+                            ConcurrencyStamp = "73078185-0a33-4279-9646-e470e5c14d34",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "2f9678d8-23ac-4161-b07e-d3d25167dd9c",
-                            ConcurrencyStamp = "3509fbce-a400-4c0f-b1da-ca6fa71b3f90",
+                            ConcurrencyStamp = "4509c00e-065c-4dd2-a9c6-74e82466929a",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -369,7 +370,7 @@ namespace LeaveManagement.web.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("LeaveManagement.Web.Data.LeaveAllocation", b =>
+            modelBuilder.Entity("LeaveManagement.web.Data.LeaveAllocation", b =>
                 {
                     b.HasOne("LeaveManagement.web.Data.LeaveType", "LeaveType")
                         .WithMany()
