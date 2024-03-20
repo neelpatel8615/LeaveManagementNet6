@@ -27,8 +27,9 @@ namespace LeaveManagement.web.Controllers
             this.mapper = mapper;
             this.leaveAllocationRepository = leaveAllocationRepository;
             this.leaveTypeRepository = leaveTypeRepository;
-        }   
+        }
         // GET: EmployeesController
+        
         public async Task<IActionResult> Index()
         {
             var employees = await userManager.GetUsersInRoleAsync(Roles.User);

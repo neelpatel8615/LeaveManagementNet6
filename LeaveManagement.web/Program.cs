@@ -16,12 +16,15 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<Employee>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddHttpContextAccessor();
 /*AddTransient gives brandnew copy (used with api)
  AddSingleton using single instance of service in entire application
  AddScoped give new connection but when finished it's going to end*/
 builder.Services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
 builder.Services.AddScoped<ILeaveTypeRepository,LeaveTypeRepository>();
 builder.Services.AddScoped<ILeaveAllocationRepository,LeaveAllocationRepository>();
+builder.Services.AddScoped<ILeaveRequestRepository, LeaveRequestRepository>();
+
 builder.Services.AddAutoMapper(typeof(ApplicationDbContext));
 builder.Services.AddControllersWithViews();
 
@@ -49,7 +52,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=LeaveRequests}/{action=Create}/{id?}");
 app.MapRazorPages();
 
 app.Run();
